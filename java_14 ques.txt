@@ -1,0 +1,229 @@
+QUES-1 
+
+import java.util.*;
+class TraineeNotFoundException extends Exception{
+	public TraineeNotFoundException(String message) {
+		super(message);
+	}
+}
+class Trainee {
+	public int traineeId, age,contactNo;
+	public String gender, traineeName, email;
+	public Trainee getTrainee(int traineeId) throws TraineeNotFoundException {
+		if (traineeId == 0) {
+			throw new TraineeNotFoundException("Trainee not found");
+		} else {
+			System.out.println("Trainee exissts");
+		}
+		return null;
+	}
+	public int getTraninee(String gender) {
+		int male=0;
+		if(gender =="male") {
+			System.out.println("it is a male");
+			male=1;
+		}
+		else if(gender =="female") {
+			System.out.println("it is a female");
+			male=0;
+		}
+		else {
+			System.out.println("Wrong input");
+		}
+		return male;
+		}
+	}
+class Batch{
+	int batchCode, startDate, endDate;
+	String[] Trainee = {"male","female"};
+	public Trainee getTrainee(int traineeId) throws TraineeNotFoundException {
+		if(traineeId == 0) {
+			throw new TraineeNotFoundException("Cant find in of traine");
+			} 
+		else {
+			System.out.println("Trainee exists");
+		}
+		return null;
+	}
+	public String[] getTraninee(String gender) {
+		if(gender ==Trainee[0]) {
+			System.out.println("it is a male");
+		}
+		else if(gender ==Trainee[1]) {
+			System.out.println("it is a female");
+		}
+		else {
+			System.out.println("Wrong input");
+		}
+		return Trainee;
+		}
+	}
+	
+	
+public class BatchTest{
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		Batch b = new Batch();
+		int g;
+		String gender1 = "male";
+		System.out.println("Enter the traineeId");
+		g=sc.nextInt();
+		try {
+		    b.getTrainee(g);
+		}
+		catch(Exception e) {
+			System.out.println("Exception"+e);		
+		}
+	}
+}
+	
+
+QUES-2
+
+public class Project {
+    protected int projectId;
+    protected String projectName;
+    protected String projectHead;
+    protected int noOfResources;
+   public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
+        public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+        public void setProjectHead(String projectHead) {
+        this.projectHead = projectHead;
+    }
+        public void setNoOfResources(int noOfResources) {
+        this.noOfResources = noOfResources;
+    }
+    private void display()
+    {
+        System.out.println("Current Project Object Info -- ");
+System.out.println("Project Id = "+projectId + "\n Project Name = " + projectName+ "\n Projecct Head = "+projectHead + "\n No Of Resources = "+noOfResources);
+    }
+    public static void main(String args[])
+    {
+        Project pj=new Project();
+        pj.setProjectId(101);
+        pj.setProjectName("Development");
+        pj.setProjectHead("Xyz");
+        pj.setNoOfResources(4);
+        pj.display();
+    }
+}
+
+Ques-3
+
+import java.util.Arrays;
+import java.util.Scanner;
+public class StringServiceProvider {
+    String str;
+   public void read() {
+        Scanner scr = new Scanner(System.in);
+        str = scr.nextLine();
+    }
+       public String reverse() {
+        char ch[] = str.toCharArray();
+        char ch1[] = new char[ch.length];
+        for (int i = ch.length - 1, k = 0; i >= 0; i--, k++)
+        ch1[k] = ch[i];
+        return Arrays.toString(ch1);
+    }
+ public int linearSearch(char element) {
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == element) {
+                return i;
+            }
+        }
+        return -1;
+    }
+ // find certain character and replace in the given string;
+    public String searchReplace(char element, char replace) {
+        char ch[] = new char[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == element) {
+               ch[i]=replace;
+            }
+            else
+                ch[i]=str.charAt(i);
+        }
+        return Arrays.toString(ch);
+    }
+    public static void main(String args[])
+    {
+        StringServiceProvider ssp=new StringServiceProvider();
+        ssp.read();
+        if(ssp.linearSearch('r')>-1)
+            System.out.println("The character found at index -- " +ssp.linearSearch('r'));
+        else
+            System.out.println("Character Not Found");
+        System.out.println(ssp.searchReplace('e','r'));
+    }
+}
+
+QUES-4
+
+public class BankAccount {
+    private String accountNo;
+    private String accountName;
+    private double balance;
+    // constructor with default value
+    public BankAccount()
+    {
+        accountName="Shanaya";
+        accountNo="6457903";
+        balance=1000;
+    }
+    // constructor to intilialize with accountno and account name
+    public BankAccount(String accountNo, String accountName) {
+        this.accountNo = accountNo;
+        this.accountName = accountName;
+        balance=1000;
+    }
+    public static void main(String[] args) {
+        BankAccount ba=new BankAccount();
+        System.out.println("After default constructor execution  --- ");
+        System.out.println("Account Name  = " +ba.accountName + "\n Account Number - "+ ba.accountNo + "\n Balance = "+ba.balance);
+        BankAccount b=new BankAccount("12054823","Prayag");
+        System.out.println("After Parameterized Overloaded constructor execution  --- ");
+        System.out.println("Account Name  = " +b.accountName + "\n Account Number - "+ b.accountNo + "\nBalance = "+b.balance);
+    }
+}
+public BankAccount(String accountNo,String accountName, double balance) {
+        this.accountName = accountName;
+        this.balance = balance;
+        this.accountNo=accountNo;
+    }
+
+
+QUES-5
+
+public class Bank {
+    private BankAccount accounts[];
+    private static int lastAssignedNo=0;
+    public void setAccounts(BankAccount[] accounts) {
+        this.accounts = accounts;
+    }
+
+    public BankAccount[] getAccounts() {
+        return accounts;
+    }
+        public static void main(String[] args) {
+        Bank sbi=new Bank();
+        BankAccount[] account=new BankAccount[3];
+        account[0]=new BankAccount(String.valueOf(++lastAssignedNo),"rahul",67893.4);
+        account[1]=new BankAccount(String.valueOf(++lastAssignedNo),"ravi",60993.4);
+        account[2]=new BankAccount(String.valueOf(++lastAssignedNo),"shanaya",632693.4);
+        sbi.setAccounts(account);
+        BankAccount[] bank1=sbi.getAccounts();
+        for(BankAccount bk:bank1)
+            System.out.println("Account Name - " +bk.getAccountName()+ "\n Account Number - "+bk.getAccountNo()+ "\n Account Balance - "+bk.getBalance());
+    }
+}
+
+
+
+
+
+	
